@@ -27,17 +27,12 @@ exports.handler = async function(event, context) {
     await preparePageForTests(page); // for getting around bots
 
     await page.goto(url);
-
     await page.waitForSelector('.server-name');
 
     const name = await page.evaluate(() => 
       document.documentElement.querySelector('.server-name').innerText
     );
-    console.log(typeof name);
-    console.log(name);
   await browser.close();
-
-  // const reply = main();
 
     return {
       statusCode: 200,
